@@ -7,15 +7,16 @@ import (
 	"net/http"
 	"time"
 
+	autoscalingv1alpha1 "github.com/sahilkukreja/predictive-autoscaler/api/v1alpha1"
 	appsv1 "k8s.io/api/apps/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/types"
 	ctrl "sigs.k8s.io/controller-runtime"
+	"sigs.k8s.io/controller-runtime/pkg/builder"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/log"
-
-	autoscalingv1alpha1 "github.com/sahilkukreja/predictive-autoscaler/api/v1alpha1"
+	"sigs.k8s.io/controller-runtime/pkg/predicate"
 )
 
 // ForecastResponse matches the FastAPI response schema in main.py
@@ -158,6 +159,9 @@ func (r *PredictiveAutoscalerReconciler) fetchForecast(url string) (*ForecastRes
 // SetupWithManager sets up the controller with the Manager.
 func (r *PredictiveAutoscalerReconciler) SetupWithManager(mgr ctrl.Manager) error {
 	return ctrl.NewControllerManagedBy(mgr).
-		For(&autoscalingv1alpha1.PredictiveAutoscaler{}).
+		For(
+			&autoscalingv1alpha1.PredictiveAutoscaler{},
+			builder.WithPredicates(predicate.GenerationChangedPredicate{}),
+		).
 		Complete(r)
 }

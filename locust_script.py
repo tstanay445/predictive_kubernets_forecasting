@@ -12,7 +12,7 @@ class WebsiteUser(HttpUser):
 
 class RealisticDiurnalTraffic(LoadTestShape):
     # Compress a 24-hour cycle into 1 hour (3600 seconds).
-    cycle_length = 3600  
+    cycle_length = 300  
     base_load = 20       # Minimum traffic at "night"
     peak_amplitude = 100 # Maximum additional users at "midday"
 
