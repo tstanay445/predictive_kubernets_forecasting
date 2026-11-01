@@ -23,7 +23,7 @@ def get_forecast(workload_name: str):
     # Example logic: extracting the peak prediction from your Prophet forecast dataframe
     # peak_row = forecast.iloc[-3600:].loc[forecast['yhat'].idxmax()]
     
-    peak_predicted_demand = 115.5  # Mock value from the peak of your blue line
+    peak_predicted_demand = 40.0  # Mock value from the peak of your blue line
     confidence_lower = 110.2
     confidence_upper = 120.8
     

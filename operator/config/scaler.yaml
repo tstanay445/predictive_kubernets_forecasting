@@ -1,0 +1,11 @@
+apiVersion: autoscaling.minorproject.io/v1alpha1
+kind: PredictiveAutoscaler
+metadata:
+  name: demo-app-scaler
+  namespace: default
+spec:
+  targetDeployment: demo-app
+  predictionURL: "http://127.0.0.1:8000/api/v1/forecast/demo-app"
+  minReplicas: 1
+  maxReplicas: 10
+  pollIntervalSeconds: 15

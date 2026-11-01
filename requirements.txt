@@ -1,0 +1,13 @@
+# FastAPI Web Service (main.py)
+fastapi
+uvicorn[standard]
+pydantic
+
+# Data Pipeline & Machine Learning (data_pipeline.py)
+pandas
+prophet
+matplotlib
+PyQt6
+
+# Load Testing & Traffic Simulation (locust_script.py)
+locust
